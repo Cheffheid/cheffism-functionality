@@ -97,4 +97,38 @@ class Cheffism_Functionality_Public {
         return $age;
     }
 
+    public function cheffism_add_imagesizes() {
+        add_image_size( 'project-thumb', 330, 200, true );
+        add_image_size( 'project-featured', 800, 400, false );
+        add_image_size( 'project-thumb-s', 220, 160, true );
+        add_image_size( 'project-thumb-m', 300, 180, true );
+        add_image_size( 'project-thumb-l', 811, 492, true );
+    }
+
+    function set_project_single_template( $single_template ) {
+        global $post;
+
+        if ( $post->post_type === 'project' ) {
+            if ( locate_template('single-project.php') === '' ) {
+                $single_template = dirname( __FILE__ ) . '/templates/single-project.php';
+            }
+        }
+        return $single_template;
+    }
+
+    function set_project_archive_template( $archive_template ) {
+
+        if ( is_post_type_archive($this->type) ) {
+            if ( locate_template('archive-project.php') === '' ) {
+                $archive_template = dirname( __FILE__ ) . '/templates/archive-project.php';
+            }
+        }
+        if ( is_tax('platform') || is_tax('technologies') ) {
+            if ( locate_template('taxonomy.php') === '' ) {
+                $archive_template = dirname( __FILE__ ) . '/templates/taxonomy.php';
+            }
+        }
+        return $archive_template;
+    }
+
 }

@@ -157,7 +157,7 @@ class Cheffism_Functionality {
 
         $plugin_admin = new Cheffism_Functionality_Admin( $this->get_plugin_name(), $this->get_version() );
 
-        $this->loader->add_action( 'admin_init', $plugin_admin, 'add_taxonomies' );
+        $this->loader->add_action( 'init', $plugin_admin, 'add_taxonomies' );
 
         $this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_metaboxes' );
         $this->loader->add_action( 'save_post', $plugin_admin, 'save_postdata' );
@@ -180,6 +180,11 @@ class Cheffism_Functionality {
 
         $this->loader->add_action( 'wp_head', $plugin_public, 'cheffism_async_google_analytics' );
         $this->loader->add_action( 'init', $plugin_public, 'cheffism_functions_shortcodes' );
+
+        $this->loader->add_action( 'init', $plugin_public, 'cheffism_add_imagesizes' );
+
+        $this->loader->add_filter( 'single_template', $plugin_public, 'set_project_single_template' );
+        $this->loader->add_filter( 'archive_template', $plugin_public, 'set_project_archive_template' );
 
     }
 

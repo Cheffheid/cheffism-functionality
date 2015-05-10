@@ -45,7 +45,10 @@
 
             $built_with = '<p>' . __('Built with: ') . ' ';
 
+            var_dump($platforms);
+
             foreach($platforms as $platform) {
+                var_dump($platform);
                 $built_with .= '<a href="' . get_term_link($platform, 'platform') . '">' . $platform->name . '</a>';
             }
 
