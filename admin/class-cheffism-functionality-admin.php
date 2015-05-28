@@ -7,7 +7,7 @@
  * @since      1.0.0
  *
  * @package    Cheffism_Functionality
- * @subpackage Cheffism_Functionality/includes
+ * @subpackage Cheffism_Functionality/admin
  */
 
 /**
@@ -18,7 +18,7 @@
  *
  * @since      1.0.0
  * @package    Cheffism_Functionality
- * @subpackage Cheffism_Functionality/includes
+ * @subpackage Cheffism_Functionality/admin
  * @author     Jeffrey de Wit <Jeffrey.deWit@gmail.com>
  */
 class Cheffism_Functionality_Admin {
@@ -177,8 +177,8 @@ class Cheffism_Functionality_Admin {
 
     public function cheffism_functionality_register_settings() {
         register_setting( 'cheffism_functionality_options', 'cheffism_functionality_options', array( $this, 'cheffism_functionality_options_validate' ) );
-        add_settings_section('cheffism_functionality_analytics', 'Analytics Settings', array( $this, 'cheffism_analytics_section_text' ), 'plugin');
-        add_settings_field('cheffism_analytics_ua', 'Google Analytics UA', array( $this, 'cheffism_analytics_field' ), 'plugin', 'cheffism_functionality_analytics');
+        add_settings_section('cheffism_functionality_analytics', 'Analytics Settings', array( $this, 'cheffism_analytics_section_text' ), $this->plugin_name);
+        add_settings_field('cheffism_analytics_ua', 'Google Analytics UA', array( $this, 'cheffism_analytics_field' ), $this->plugin_name, 'cheffism_functionality_analytics');
     }
 
     public function cheffism_analytics_section_text() {

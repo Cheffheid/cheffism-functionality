@@ -3,7 +3,7 @@
     
     <form action="options.php" method="post">
         <?php settings_fields('cheffism_functionality_options'); ?>
-        <?php do_settings_sections('plugin'); ?>
+        <?php do_settings_sections($this->plugin_name); ?>
  
         <input name="Submit" type="submit" value="<?php esc_attr_e('Save Changes'); ?>" />
     </form>

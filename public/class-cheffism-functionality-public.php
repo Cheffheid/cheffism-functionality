@@ -7,7 +7,7 @@
  * @since      1.0.0
  *
  * @package    Cheffism_Functionality
- * @subpackage Cheffism_Functionality/includes
+ * @subpackage Cheffism_Functionality/public
  */
 
 /**
@@ -18,7 +18,7 @@
  *
  * @since      1.0.0
  * @package    Cheffism_Functionality
- * @subpackage Cheffism_Functionality/includes
+ * @subpackage Cheffism_Functionality/public
  * @author     Jeffrey de Wit <Jeffrey.deWit@gmail.com>
  */
 class Cheffism_Functionality_Public {
