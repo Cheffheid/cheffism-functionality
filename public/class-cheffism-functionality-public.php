@@ -118,7 +118,7 @@ class Cheffism_Functionality_Public {
 
     function set_project_archive_template( $archive_template ) {
 
-        if ( is_post_type_archive($this->type) ) {
+        if ( is_post_type_archive( 'project' ) ) {
             if ( locate_template('archive-project.php') === '' ) {
                 $archive_template = dirname( __FILE__ ) . '/templates/archive-project.php';
             }
