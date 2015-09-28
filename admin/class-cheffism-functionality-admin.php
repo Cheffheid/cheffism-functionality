@@ -119,9 +119,17 @@ class Cheffism_Functionality_Admin {
     public function project_metabox() {
 
         global $post;
-        extract(get_post_custom($post->ID));
+        extract( get_post_custom($post->ID) );
           // Use nonce for verification
-        wp_nonce_field( plugin_basename(__FILE__), 'noncename' );
+        wp_nonce_field( plugin_basename(__FILE__), 'project_nonce' );
+
+        if ( !isset( $cheffism_in_progress[0] ) ) {
+            $cheffism_in_progress[0] = '';
+        }
+
+        if ( !isset( $cheffism_project_link[0] ) ) {
+            $cheffism_project_link[0] = '';
+        }
 
         require plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/project-metabox.php';
 
@@ -134,35 +142,35 @@ class Cheffism_Functionality_Admin {
      * @param  int $post_id The post's ID.
      */
     public function save_postdata( $post_id ) {
-        if ( empty($_POST) || 
-             $_POST['post_type'] !== 'project' ||
-             !wp_verify_nonce( $_POST['noncename'], plugin_basename(__FILE__) ) ) {
-                
-                return $post_id;
+
+        if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+            return;
         }
 
-        if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
-            return $post_id;
-
-
-        // Check permissions
-        if ( 'page' == $_POST['post_type'] ) {
-            if ( !current_user_can( 'edit_page', $post_id ) )
-                return $post_id;
-        } else {
-            if ( !current_user_can( 'edit_post', $post_id ) )
-                return $post_id;
-        }
-
-        if($_POST['post_type'] == 'project' ) {
-            global $post;
-
-            if ( !in_array('cheffism_in_progress', $_POST) ) {
-                update_post_meta($post->ID, 'cheffism_in_progress', '');
+        if ( isset($_POST['post_type']) ) {
+            if ( empty($_POST) || 
+                 $_POST['post_type'] !== 'project' ||
+                 !wp_verify_nonce( $_POST['project_nonce'], plugin_basename(__FILE__) ) ) {
+                    
+                    return $post_id;
             }
 
-            foreach($_POST as $key => $val) {
-                update_post_meta($post->ID, $key, $val);
+            if ( 'project' == $_POST['post_type'] ) { 
+                if ( !current_user_can( 'edit_page', $post_id ) ) { 
+                    return $post_id; 
+                }
+            } elseif ( !current_user_can( 'edit_post', $post_id ) ) { return $post_id; }
+
+            if( $_POST['post_type'] == 'project' ) {
+                global $post;
+
+                if ( !in_array('cheffism_in_progress', $_POST) ) {
+                    update_post_meta($post->ID, 'cheffism_in_progress', '');
+                }
+
+                foreach($_POST as $key => $val) {
+                    update_post_meta($post->ID, $key, $val);
+                }
             }
         }
     }
