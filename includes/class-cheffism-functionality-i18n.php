@@ -23,7 +23,7 @@
  * @subpackage Cheffism_Functionality/includes
  * @author     Jeffrey de Wit <Jeffrey.deWit@gmail.com>
  */
-class Cheffism_Functionality_i18n {
+class Cheffism_Functionality_I18n {
 
 	/**
 	 * The domain specified for this plugin.

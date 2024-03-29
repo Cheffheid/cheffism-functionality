@@ -83,7 +83,7 @@ class Cheffism_Functionality {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Cheffism_Functionality_Loader. Orchestrates the hooks of the plugin.
-	 * - Cheffism_Functionality_i18n.   Defines internationalization functionality.
+	 * - Cheffism_Functionality_I18n.   Defines internationalization functionality.
 	 * - Cheffism_Functionality_Admin.  Defines all hooks for the admin area.
 	 * - Cheffism_Functionality_Public. Defines all hooks for the public side of the site.
 	 *
@@ -129,7 +129,7 @@ class Cheffism_Functionality {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Cheffism_Functionality_i18n class in order to set the domain and to register the hook
+	 * Uses the Cheffism_Functionality_I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,7 +137,7 @@ class Cheffism_Functionality {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Cheffism_Functionality_i18n();
+		$plugin_i18n = new Cheffism_Functionality_I18n();
 		$plugin_i18n->set_domain( $this->get_plugin_name() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );

@@ -19,7 +19,7 @@
  * @subpackage Cheffism_Functionality/includes
  * @author     Jeffrey de Wit <Jeffrey.deWit@gmail.com>
  */
-class Plugin_Name_Deactivator {
+class Cheffism_Functionality_Deactivator {
 
 	/**
 	 * Flush rewrite rules to clear out taxonomies and the like.
