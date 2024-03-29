@@ -17,5 +17,5 @@
 </p>
 <p>
 	<label for="cheffism_project_link">Link</label>
-	<input name="cheffism_project_link" id="cheffism_project_link" type="text" value="<?php echo $cheffism_project_link[0]; ?>" /><br />
+	<input name="cheffism_project_link" id="cheffism_project_link" type="text" value="<?php echo esc_attr( $cheffism_project_link[0] ); ?>" /><br />
 </p>
