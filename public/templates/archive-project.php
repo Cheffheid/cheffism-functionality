@@ -6,34 +6,38 @@
 
 get_header(); ?>
 
-    <div id="primary" role="region">
-        <div id="content" class="page-wrap">
+	<div id="primary" role="region">
+		<div id="content" class="page-wrap">
 
-            <header>
-                <h1 class="list-title">
-                    <span><?php post_type_archive_title(); ?></span>
-                </h1>
+			<header>
+				<h1 class="list-title">
+					<span><?php post_type_archive_title(); ?></span>
+				</h1>
 
-            </header>
+			</header>
 
-            <?php if ( have_posts() ) :
-                while ( have_posts() ) : the_post();
+			<?php
+			if ( have_posts() ) :
+				while ( have_posts() ) :
+					the_post();
 
-                include(dirname( __FILE__ ) . '/includes/project.php');
-    
-                endwhile; ?>
+					include __DIR__ . '/includes/project.php';
 
-                <?php /* Show page navigation when applicable */ ?>
-                <?php if ( $wp_query->max_num_pages > 1 ) : ?>
-                    <nav id="nav-above" role="article" class="material-block cf fixed-post-nav">
-                        <div class="fixed previous"><?php next_posts_link( __( '&larr; Previous Project', 'cheffism' ) ); ?></div>
-                        <div class="fixed next"><?php previous_posts_link( __( 'Next Project &rarr;', 'cheffism' ) ); ?></div>
-                    </nav><!-- #nav-above -->
-                <?php endif; ?>
-            <?php else: ?>
-                <p class="no-results">No projects here. Check back later!</p>
-            <?php endif; ?>
-        </div><!-- #content -->
-    </div><!-- #primary -->
+				endwhile;
+				?>
 
-<?php get_footer();
+				<?php /* Show page navigation when applicable */ ?>
+				<?php if ( $wp_query->max_num_pages > 1 ) : ?>
+					<nav id="nav-above" role="article" class="material-block cf fixed-post-nav">
+						<div class="fixed previous"><?php next_posts_link( __( '&larr; Previous Project', 'cheffism' ) ); ?></div>
+						<div class="fixed next"><?php previous_posts_link( __( 'Next Project &rarr;', 'cheffism' ) ); ?></div>
+					</nav><!-- #nav-above -->
+				<?php endif; ?>
+			<?php else : ?>
+				<p class="no-results">No projects here. Check back later!</p>
+			<?php endif; ?>
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+<?php
+get_footer();

@@ -22,13 +22,12 @@
  */
 class Plugin_Name_Deactivator {
 
-    /**
-     * Flush rewrite rules to clear out taxonomies and the like.
-     *
-     * @since    1.0.0
-     */
-    public static function deactivate() {
-        flush_rewrite_rules();
-    }
-
+	/**
+	 * Flush rewrite rules to clear out taxonomies and the like.
+	 *
+	 * @since    1.0.0
+	 */
+	public static function deactivate() {
+		flush_rewrite_rules();
+	}
 }

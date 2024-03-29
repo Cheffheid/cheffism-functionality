@@ -16,28 +16,27 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       cheffism-functions
  * Domain Path:       /languages
- *
  */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-    die;
+	die;
 }
 
 /**
  * The code that runs during plugin activation.
  */
 function activate_cheffism_functionality() {
-    require_once plugin_dir_path( __FILE__ ) . 'includes/class-cheffism-functionality-activator.php';
-    Cheffism_Functionality_Activator::activate();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-cheffism-functionality-activator.php';
+	Cheffism_Functionality_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  */
 function deactivate_cheffism_functionality() {
-    require_once plugin_dir_path( __FILE__ ) . 'includes/class-cheffism-functionality-deactivator.php';
-    Cheffism_Functionality_Deactivator::deactivate();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-cheffism-functionality-deactivator.php';
+	Cheffism_Functionality_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_cheffism_functionality' );
@@ -60,8 +59,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-cheffism-functionality.php
  */
 function run_cheffism_functionality() {
 
-    $plugin = new Cheffism_Functionality();
-    $plugin->run();
-
+	$plugin = new Cheffism_Functionality();
+	$plugin->run();
 }
 run_cheffism_functionality();

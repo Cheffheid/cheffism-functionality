@@ -22,13 +22,12 @@
  */
 class Cheffism_Functionality_Activator {
 
-    /**
-     * Flush rewrite rules to activate new taxonomies and the like.
-     *
-     * @since    1.0.0
-     */
-    public static function activate() {
-        flush_rewrite_rules();
-    }
-
+	/**
+	 * Flush rewrite rules to activate new taxonomies and the like.
+	 *
+	 * @since    1.0.0
+	 */
+	public static function activate() {
+		flush_rewrite_rules();
+	}
 }
