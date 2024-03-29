@@ -53,21 +53,6 @@ class Cheffism_Functionality_Public {
 		$this->version     = $version;
 	}
 
-	/**
-	 * Display Google Analytics code when WP_DEBUG is set to false.
-	 *
-	 * @since    1.0.0
-	 */
-	public function cheffism_async_google_analytics() {
-
-		if ( ! WP_DEBUG ) {
-			$UA = get_option( 'cheffism_functionality_options', '' );
-
-			require plugin_dir_path( __DIR__ ) . '/public/partials/cheffism-functionality-analytics.php';
-		}
-	}
-
-
 	public function cheffism_functions_shortcodes() {
 		add_shortcode( 'age', array( $this, 'cheffism_age_function' ) );
 	}

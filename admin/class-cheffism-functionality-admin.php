@@ -105,7 +105,7 @@ class Cheffism_Functionality_Admin {
 	 * @since  1.0.0
 	 */
 	public function add_metaboxes() {
-		add_meta_box( 'project_metabox', _( 'Project Details' ), array( $this, 'project_metabox' ), 'project', 'normal', 'high' );
+		add_meta_box( 'project_metabox', esc_html__( 'Project Details', 'cheffism' ), array( $this, 'project_metabox' ), 'project', 'normal', 'high' );
 	}
 
 
@@ -117,8 +117,10 @@ class Cheffism_Functionality_Admin {
 	public function project_metabox() {
 
 		global $post;
+
 		extract( get_post_custom( $post->ID ) );
-			// Use nonce for verification
+
+		// Use nonce for verification.
 		wp_nonce_field( plugin_basename( __FILE__ ), 'project_nonce' );
 
 		if ( ! isset( $cheffism_in_progress[0] ) ) {
@@ -146,23 +148,23 @@ class Cheffism_Functionality_Admin {
 
 		if ( isset( $_POST['post_type'] ) ) {
 			if ( empty( $_POST ) ||
-				$_POST['post_type'] !== 'project' ||
+				'project' !== $_POST['post_type'] ||
 				! wp_verify_nonce( $_POST['project_nonce'], plugin_basename( __FILE__ ) ) ) {
 
 					return $post_id;
 			}
 
-			if ( 'project' == $_POST['post_type'] ) {
+			if ( 'project' === $_POST['post_type'] ) {
 				if ( ! current_user_can( 'edit_page', $post_id ) ) {
 					return $post_id;
 				}
 			} elseif ( ! current_user_can( 'edit_post', $post_id ) ) {
 				return $post_id; }
 
-			if ( $_POST['post_type'] == 'project' ) {
+			if ( 'project' === $_POST['post_type'] ) {
 				global $post;
 
-				if ( ! in_array( 'cheffism_in_progress', $_POST ) ) {
+				if ( ! in_array( 'cheffism_in_progress', $_POST, true ) ) {
 					update_post_meta( $post->ID, 'cheffism_in_progress', '' );
 				}
 
@@ -171,35 +173,5 @@ class Cheffism_Functionality_Admin {
 				}
 			}
 		}
-	}
-
-	public function cheffism_settings_page() {
-		add_options_page( 'Cheffism Settings', 'Cheffism Settings', 'manage_options', 'cheffism_settings', array( $this, 'cheffism_functionality_options_page' ) );
-	}
-
-	public function cheffism_functionality_options_page() {
-		require plugin_dir_path( __DIR__ ) . '/admin/partials/settings-page.php';
-	}
-
-	public function cheffism_functionality_register_settings() {
-		register_setting( 'cheffism_functionality_options', 'cheffism_functionality_options', array( $this, 'cheffism_functionality_options_validate' ) );
-		add_settings_section( 'cheffism_functionality_analytics', 'Analytics Settings', array( $this, 'cheffism_analytics_section_text' ), $this->plugin_name );
-		add_settings_field( 'cheffism_analytics_ua', 'Google Analytics UA', array( $this, 'cheffism_analytics_field' ), $this->plugin_name, 'cheffism_functionality_analytics' );
-	}
-
-	public function cheffism_analytics_section_text() {
-		echo '<p>Add your Google Analytics UA code here.</p>';
-	}
-
-	public function cheffism_analytics_field() {
-		$options = get_option( 'cheffism_functionality_options' );
-		echo "<input id='cheffism_analytics_ua' name='cheffism_functionality_options[cheffism_analytics_ua]' size='40' type='text' value='{$options['cheffism_analytics_ua']}' />";
-	}
-
-	function cheffism_functionality_options_validate( $input ) {
-		$newinput['cheffism_analytics_ua'] = trim( $input['cheffism_analytics_ua'] );
-		$newinput['cheffism_analytics_ua'] = wp_strip_all_tags( $newinput['cheffism_analytics_ua'] );
-
-		return $newinput;
 	}
 }

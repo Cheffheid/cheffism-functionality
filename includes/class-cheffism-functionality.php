@@ -158,9 +158,6 @@ class Cheffism_Functionality {
 
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_metaboxes' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_postdata' );
-
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'cheffism_settings_page' );
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'cheffism_functionality_register_settings' );
 	}
 
 	/**
@@ -174,7 +171,6 @@ class Cheffism_Functionality {
 
 		$plugin_public = new Cheffism_Functionality_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_head', $plugin_public, 'cheffism_async_google_analytics' );
 		$this->loader->add_action( 'init', $plugin_public, 'cheffism_functions_shortcodes' );
 
 		$this->loader->add_action( 'init', $plugin_public, 'cheffism_add_imagesizes' );
