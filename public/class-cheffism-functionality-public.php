@@ -53,38 +53,47 @@ class Cheffism_Functionality_Public {
 		$this->version     = $version;
 	}
 
+	/**
+	 * Shortcode registration function.
+	 */
 	public function cheffism_functions_shortcodes() {
 		add_shortcode( 'age', array( $this, 'cheffism_age_function' ) );
 	}
 
 	/**
-	 * Displays age based on date of birth
+	 * Displays age based on date of birth.
 	 *
-	 * TODO: Fix different formats
+	 * TODO: Fix different formats.
+	 *
+	 * @param array $atts Array of shortcode attributes.
 	 *
 	 * @since    1.0.0
 	 */
 	public function cheffism_age_function( $atts ) {
-		extract(
-			shortcode_atts(
-				array(
-					'date'   => '11/04/1985',
-					'format' => 'dd/MM/YYYY',
-				),
-				$atts
-			)
+
+		$args = shortcode_atts(
+			array(
+				'date'   => '11/04/1985',
+				'format' => 'dd/MM/YYYY',
+			),
+			$atts
 		);
 
-		// explode the date to get month, day and year
+		$date   = $args['date'];
+		$format = $args['format'];
+
 		$date = explode( '/', $date );
-		// get age from date or birthdate
-		$age = ( date( 'md', date( 'U', mktime( 0, 0, 0, $date[1], $date[0], $date[2] ) ) ) > date( 'md' )
-		? ( ( date( 'Y' ) - $date[2] ) - 1 )
-		: ( date( 'Y' ) - $date[2] ) );
+
+		$age = ( gmdate( 'md', gmdate( 'U', mktime( 0, 0, 0, $date[1], $date[0], $date[2] ) ) ) > gmdate( 'md' )
+		? ( ( gmdate( 'Y' ) - $date[2] ) - 1 )
+		: ( gmdate( 'Y' ) - $date[2] ) );
 
 		return $age;
 	}
 
+	/**
+	 * Custom image size registration.
+	 */
 	public function cheffism_add_imagesizes() {
 		add_image_size( 'project-thumb', 330, 200, true );
 		add_image_size( 'project-featured', 800, 400, false );
@@ -93,29 +102,47 @@ class Cheffism_Functionality_Public {
 		add_image_size( 'project-thumb-l', 811, 492, true );
 	}
 
-	function set_project_single_template( $single_template ) {
+	/**
+	 * Set the Single Project template to the one included in this plugin if it doesn't exist in the theme.
+	 *
+	 * @param string $single_template Path to the template. See locate_template().
+	 *
+	 * @return string
+	 */
+	public function set_project_single_template( $single_template ) {
 		global $post;
 
-		if ( $post->post_type === 'project' ) {
-			if ( locate_template( 'single-project.php' ) === '' ) {
-				$single_template = __DIR__ . '/templates/single-project.php';
-			}
+		if ( 'project' !== $post->post_type ) {
+			return $single_template;
 		}
+
+		if ( locate_template( 'single-project.php' ) === '' ) {
+			$single_template = __DIR__ . '/templates/single-project.php';
+		}
+
 		return $single_template;
 	}
 
-	function set_project_archive_template( $archive_template ) {
+	/**
+	 * Set the Project Archive template to the one included in the plugin if it doesn't exist in the theme.
+	 *
+	 * @param string $archive_template Path to the template. See locate_template().
+	 * @return string
+	 */
+	public function set_project_archive_template( $archive_template ) {
 
 		if ( is_post_type_archive( 'project' ) ) {
 			if ( locate_template( 'archive-project.php' ) === '' ) {
 				$archive_template = __DIR__ . '/templates/archive-project.php';
 			}
 		}
+
 		if ( is_tax( 'platform' ) || is_tax( 'technologies' ) ) {
 			if ( locate_template( 'taxonomy.php' ) === '' ) {
 				$archive_template = __DIR__ . '/templates/taxonomy.php';
 			}
 		}
+
 		return $archive_template;
 	}
 }
