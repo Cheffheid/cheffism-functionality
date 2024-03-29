@@ -1,0 +1,25 @@
+{
+    "name": "cheffheid/cheffism-functionality",
+    "description": "CPT and taxonomy definitions",
+    "type": "project",
+    "license": "GPLv2",
+    "autoload": {
+        "psr-4": {
+            "Cheffheid\\CheffismFunctionality\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jeffrey de Wit",
+            "email": "jeffrey@webdevstudios.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^3.0"
+    }
+}
