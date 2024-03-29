@@ -1,6 +1,6 @@
 <?php
-
 /**
+ * Plugin entry point file.
  *
  * @link              http://jeffreydewit.com
  * @since             1.0.0

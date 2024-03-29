@@ -1,5 +1,7 @@
 <?php
 /**
+ * Default template file for displaying a single Project page.
+ *
  * @package WordPress
  * @subpackage Cheffism
  */
@@ -24,7 +26,7 @@ get_header(); ?>
 					<div class="fixed previous"><?php previous_post_link( '%link', '&larr; Previous Project' ); ?></div>
 					<div class="fixed next"><?php next_post_link( '%link', 'Next Project &rarr;' ); ?></div>
 				</nav><!-- #nav-above -->
-			</div><!-- #content --> 
+			</div><!-- #content -->
 		</div><!-- #primary -->
 
 <?php get_footer(); ?>

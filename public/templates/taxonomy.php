@@ -1,5 +1,7 @@
 <?php
 /**
+ * Taxonomy template used for Platform and Technologies taxonomies.
+ *
  * @package WordPress
  * @subpackage Cheffism
  */

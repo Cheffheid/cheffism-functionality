@@ -1,5 +1,7 @@
 <?php
 /**
+ * The default template file for the Project CPT archive page.
+ *
  * @package WordPress
  * @subpackage Cheffism
  */

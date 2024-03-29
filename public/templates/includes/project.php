@@ -1,3 +1,16 @@
+<?php
+/**
+ * This is a re-usable single project template part for displaying a project post on an archive or other taxonomy.
+ *
+ * @link       http://jeffreydewit.com
+ * @since      1.0.0
+ *
+ * @package    Cheffism_Functionality
+ * @subpackage Cheffism_Functionality/template-includes
+ */
+
+?>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'material-block  ' ); ?>>
 	<?php
 		$project_in_progress = get_post_meta( get_the_ID(), 'cheffism_in_progress', true );
