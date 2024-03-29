@@ -230,7 +230,21 @@ class Cheffism_Functionality {
 	 */
 	private function register_post_types() {
 
-		$project = new Cheffism_Functionality_CPT( 'Project', 'Projects', 'project' );
+		$project_labels = array(
+			'name'               => esc_html__( 'Projects', 'cheffism' ),
+			'singular_name'      => esc_html__( 'Project', 'cheffism' ),
+			'add_new'            => esc_html__( 'Add Project', 'cheffism' ),
+			'add_new_item'       => esc_html__( 'Add New Project', 'cheffism' ),
+			'edit_item'          => esc_html__( 'Edit Project', 'cheffism' ),
+			'new_item'           => esc_html__( 'New Project', 'cheffism' ),
+			'view_item'          => esc_html__( 'View Project', 'cheffism' ),
+			'search_items'       => esc_html__( 'Search Projects', 'cheffism' ),
+			'not_found'          => esc_html__( 'No Projects Found', 'cheffism' ),
+			'not_found_in_trash' => esc_html__( 'No Projects found in Trash', 'cheffism' ),
+			'parent_item_colon'  => '',
+		);
+		$project        = new Cheffism_Functionality_CPT( 'Project', 'Projects', 'project', $project_labels );
+
 		$this->loader->add_action( 'init', $project, 'register_post_type' );
 	}
 }

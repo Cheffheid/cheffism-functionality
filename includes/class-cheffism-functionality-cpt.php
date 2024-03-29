@@ -21,14 +21,47 @@
  */
 class Cheffism_Functionality_CPT {
 
+	/**
+	 * Single CPT label.
+	 *
+	 * @var string
+	 */
 	private $single;
+
+	/**
+	 * Plural CPT label.
+	 *
+	 * @var string
+	 */
 	private $plural;
+
+	/**
+	 * CPT post type identifier string.
+	 *
+	 * @var string
+	 */
 	private $type;
 
-	public function __construct( $single, $plural, $type ) {
+	/**
+	 * CPT Labels array.
+	 *
+	 * @var array
+	 */
+	private $labels;
+
+	/**
+	 * Class constructor.
+	 *
+	 * @param string $single CPT Singular label.
+	 * @param string $plural CPT Plural label.
+	 * @param string $type   CPT post type identifier string.
+	 * @param array  $labels CPT labels array.
+	 */
+	public function __construct( $single, $plural, $type, $labels ) {
 		$this->single = $single;
 		$this->plural = $plural;
 		$this->type   = $type;
+		$this->labels = $labels;
 	}
 
 	/**
@@ -37,22 +70,8 @@ class Cheffism_Functionality_CPT {
 	 * @since    1.0.0
 	 */
 	public function register_post_type() {
-
-		$labels  = array(
-			'name'               => _( $this->plural ),
-			'singular_name'      => _( $this->single ),
-			'add_new'            => _x( 'Add ' . $this->single, $this->single ),
-			'add_new_item'       => _( 'Add New ' . $this->single ),
-			'edit_item'          => _( 'Edit ' . $this->single ),
-			'new_item'           => _( 'New ' . $this->single ),
-			'view_item'          => _( 'View ' . $this->single ),
-			'search_items'       => _( 'Search ' . $this->plural ),
-			'not_found'          => _( 'No ' . $this->plural . ' Found' ),
-			'not_found_in_trash' => _( 'No ' . $this->plural . ' found in Trash' ),
-			'parent_item_colon'  => '',
-		);
 		$options = array(
-			'labels'             => $labels,
+			'labels'             => $this->labels,
 			'public'             => true,
 			'publicly_queryable' => true,
 			'show_ui'            => true,
