@@ -6,7 +6,8 @@
  * @subpackage Cheffism
  */
 
-get_header(); ?>
+get_header();
+?>
 
 	<div id="primary" role="region">
 		<div id="content" class="page-wrap">
@@ -16,7 +17,7 @@ get_header(); ?>
 					<span>
 					<?php
 					single_cat_title();
-					echo '&nbsp;' . __( 'Projects' );
+					echo '&nbsp;' . esc_html__( 'Projects', 'cheffism' );
 					?>
 					</span>
 				</h1>
@@ -41,7 +42,9 @@ get_header(); ?>
 					</nav><!-- #nav-above -->
 				<?php endif; ?>
 			<?php else : ?>
-				<p class="no-results">No projects here. Check back later!</p>
+				<p class="no-results">
+					<?php esc_html_e( 'No projects here. Check back later!', 'cheffism' ); ?>
+				</p>
 			<?php endif; ?>
 
 		</div><!-- #content -->
