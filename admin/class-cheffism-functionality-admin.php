@@ -118,17 +118,18 @@ class Cheffism_Functionality_Admin {
 
 		global $post;
 
-		extract( get_post_custom( $post->ID ) );
+		$cheffism_in_progress  = get_post_meta( $post->ID, 'cheffism_in_progress', true );
+		$cheffism_project_link = get_post_meta( $post->ID, 'cheffism_project_link', true );
 
 		// Use nonce for verification.
 		wp_nonce_field( plugin_basename( __FILE__ ), 'project_nonce' );
 
-		if ( ! isset( $cheffism_in_progress[0] ) ) {
-			$cheffism_in_progress[0] = '';
+		if ( ! $cheffism_in_progress ) {
+			$cheffism_in_progress = '';
 		}
 
-		if ( ! isset( $cheffism_project_link[0] ) ) {
-			$cheffism_project_link[0] = '';
+		if ( ! $cheffism_project_link ) {
+			$cheffism_project_link = '';
 		}
 
 		require plugin_dir_path( __DIR__ ) . '/admin/partials/project-metabox.php';
