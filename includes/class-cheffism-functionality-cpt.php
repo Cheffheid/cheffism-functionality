@@ -71,24 +71,32 @@ class Cheffism_Functionality_CPT {
 	 */
 	public function register_post_type() {
 		$options = array(
-			'labels'             => $this->labels,
-			'public'             => true,
-			'publicly_queryable' => true,
-			'show_ui'            => true,
-			'query_var'          => true,
-			'rewrite'            => array( 'slug' => strtolower( $this->plural ) ),
-			'capability_type'    => 'post',
-			'hierarchical'       => false,
-			'has_archive'        => true,
-			'menu_position'      => null,
-			'menu_icon'          => 'dashicons-desktop',
-			'supports'           => array(
+			'labels'                => $this->labels,
+			'public'                => true,
+			'publicly_queryable'    => true,
+			'show_ui'               => true,
+			'show_in_rest'          => true,
+			'show_in_graphql'       => true,
+			'rest_base'             => '',
+			'rest_controller_class' => 'WP_REST_Posts_Controller',
+			'rest_namespace'        => 'wp/v2',
+			'query_var'             => true,
+			'rewrite'               => array( 'slug' => strtolower( $this->plural ) ),
+			'capability_type'       => 'post',
+			'hierarchical'          => false,
+			'has_archive'           => true,
+			'menu_position'         => null,
+			'menu_icon'             => 'dashicons-desktop',
+			'supports'              => array(
 				'title',
 				'editor',
 				'thumbnail',
 				'comments',
 			),
+			'graphql_single_name'   => $this->single,
+			'graphql_plural_name'   => $this->plural,
 		);
+
 		register_post_type( $this->type, $options );
 	}
 }
