@@ -101,48 +101,4 @@ class Cheffism_Functionality_Public {
 		add_image_size( 'project-thumb-m', 300, 180, true );
 		add_image_size( 'project-thumb-l', 811, 492, true );
 	}
-
-	/**
-	 * Set the Single Project template to the one included in this plugin if it doesn't exist in the theme.
-	 *
-	 * @param string $single_template Path to the template. See locate_template().
-	 *
-	 * @return string
-	 */
-	public function set_project_single_template( $single_template ) {
-		global $post;
-
-		if ( 'project' !== $post->post_type ) {
-			return $single_template;
-		}
-
-		if ( locate_template( 'single-project.php' ) === '' ) {
-			$single_template = __DIR__ . '/templates/single-project.php';
-		}
-
-		return $single_template;
-	}
-
-	/**
-	 * Set the Project Archive template to the one included in the plugin if it doesn't exist in the theme.
-	 *
-	 * @param string $archive_template Path to the template. See locate_template().
-	 * @return string
-	 */
-	public function set_project_archive_template( $archive_template ) {
-
-		if ( is_post_type_archive( 'project' ) ) {
-			if ( locate_template( 'archive-project.php' ) === '' ) {
-				$archive_template = __DIR__ . '/templates/archive-project.php';
-			}
-		}
-
-		if ( is_tax( 'platform' ) || is_tax( 'technologies' ) ) {
-			if ( locate_template( 'taxonomy.php' ) === '' ) {
-				$archive_template = __DIR__ . '/templates/taxonomy.php';
-			}
-		}
-
-		return $archive_template;
-	}
 }

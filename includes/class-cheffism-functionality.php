@@ -174,9 +174,6 @@ class Cheffism_Functionality {
 		$this->loader->add_action( 'init', $plugin_public, 'cheffism_functions_shortcodes' );
 
 		$this->loader->add_action( 'init', $plugin_public, 'cheffism_add_imagesizes' );
-
-		$this->loader->add_filter( 'single_template', $plugin_public, 'set_project_single_template' );
-		$this->loader->add_filter( 'archive_template', $plugin_public, 'set_project_archive_template' );
 	}
 
 	/**
