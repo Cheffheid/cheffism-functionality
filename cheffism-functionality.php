@@ -9,7 +9,7 @@
  * @wordpress-plugin
  * Plugin Name:       Cheffism Functionality
  * Description:       Collection of theme-agnostic functionality that I use on my website
- * Version:           2.0.1
+ * Version:           3.0
  * Author:            Jeffrey de Wit
  * Author URI:        http://jeffreydewit.com/
  * License:           GPL-2.0+
