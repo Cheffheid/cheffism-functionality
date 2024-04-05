@@ -175,4 +175,17 @@ class Cheffism_Functionality_Admin {
 			}
 		}
 	}
+
+	/**
+	 * Update the allowed mimetypes for media library uploads.
+	 *
+	 * @since  3.0.0
+	 * @param array $mimetypes Array of allowed mimetypes.
+	 * @return array
+	 */
+	public function update_allowed_mimetypes( $mimetypes ) {
+		$mimetypes['webp'] = 'image/webp';
+
+		return $mimetypes;
+	}
 }

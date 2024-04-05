@@ -158,6 +158,7 @@ class Cheffism_Functionality {
 
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_metaboxes' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_postdata' );
+		$this->loader->add_filter( 'upload_mimes', $plugin_admin, 'update_allowed_mimetypes' );
 	}
 
 	/**
